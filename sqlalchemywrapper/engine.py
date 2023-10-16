@@ -9,16 +9,21 @@ class SQLAlchemyEngineWrapper:
     def __init__(self, engine: Engine):
         self.engine = engine
 
-    def select(self, stmt: str, include_column_names: bool = False):
+    def select(self, stmt: str, as_list_of_lists: bool = False):
         with self.engine.connect() as connection:
 
             try:
                 rtn = []
                 result = connection.execute(text(stmt))
 
-                if include_column_names:
-                    rtn.append(tuple(result.keys()))
-                rtn += [row for row in result]
+                if as_list_of_lists:
+                    # list of lists
+                    rtn.append(list(result.keys()))
+                    rtn += [list(row) for row in result]
+                else:
+                    # list of dictionaries
+                    rtn += [dict(zip(result.keys(), row)) for row in result]
+
                 return rtn
             except Exception as e:
                 raise e

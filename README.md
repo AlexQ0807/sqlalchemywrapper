@@ -39,7 +39,7 @@ sqlite_wrapper.modify('''
 print(
     sqlite_wrapper.select('''
             SELECT * FROM person;
-    ''', include_column_names=True)
+    ''', as_list_of_lists=True)
 )
 
 ```

@@ -1,0 +1,3 @@
+python-dotenv           #https://pypi.org/project/python-dotenv/
+sqlalchemy
+mysqlclient

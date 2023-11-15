@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name='sqlalchemywrapper',
-    version='0.1.2',
+    version='0.1.3',
     author='Alex Q',
     author_email='alex.quan0807@gmail.com',
     description='Personal Wrapper for SQL Alchemy operations',

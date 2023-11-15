@@ -63,9 +63,13 @@ class SQLAlchemyEngineWrapper:
             raise e
 
     @classmethod
-    def create_mysqlclient_connection_string(cls, db_host, db_name, db_username, db_password):
+    def create_mysqlclient_connection_string(cls, db_host, db_name, db_username, db_password, use_utf8=True):
         try:
-            return 'mysql+mysqldb://{}:{}@{}/{}'.format(db_username, db_password, db_host, db_name)
+            conn_str = 'mysql+mysqldb://{}:{}@{}/{}'.format(db_username, db_password, db_host, db_name)
+
+            if use_utf8:
+                conn_str = "{}?charset=utf8mb4".format(conn_str)
+            return conn_str
         except Exception as e:
             raise e
 
